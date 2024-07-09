@@ -73,7 +73,7 @@ def precipitation():
         data_prcp_list.append(data_prcp)
 
     title = "Dates and Precipitation list is as follows"
-
+    # Converting Data to Json
     return jsonify(title, data_prcp_list)
 
 # Api for list of stations
@@ -89,7 +89,7 @@ def stations():
     session.close()
 
     title = "List of stations is as follows"
-
+    # Converting Data to Json
     return jsonify(title, station_list)
 
 @app.route("/api/v1.0/tobs")
@@ -134,7 +134,7 @@ def start_date(start):
                   "Maximum Temperature": max} for date,min,avg,max in results]
 
     title = f"The temperature information for the dates after {start} is as follows"
-
+    # Converting Data to Json
     return jsonify(title,temp_dict)
 
 @app.route("/api/v1.0/startdate/<start>/enddate/<end>")
@@ -157,7 +157,7 @@ def start_end(start,end):
                   "Maximum Temperature": max} for date,min,avg,max in results]
     
     title = f"The temperature information for the date range {start} and {end} is as follows"
-
+    # Converting Data to Json
     return jsonify(title,temp_dict)
 
 if __name__ == '__main__':

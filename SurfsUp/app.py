@@ -133,9 +133,13 @@ def start_date(start):
                   "Average Temperature":avg,
                   "Maximum Temperature": max} for date,min,avg,max in results]
 
-    title = f"The temperature information for the dates after {start} is as follows"
-    # Converting Data to Json
-    return jsonify(title,temp_dict)
+    for date in temp_dict:
+        if start != date:
+            title = f"The temperature information for the dates after {start} is as follows"
+            # Converting Data to Json
+            return jsonify(title,temp_dict)
+    
+    return jsonify({"error": "Dates not found."}), 404
 
 @app.route("/api/v1.0/startdate/<start>/enddate/<end>")
 def start_end(start,end):
@@ -156,9 +160,16 @@ def start_end(start,end):
                   "Average Temperature":avg,
                   "Maximum Temperature": max} for date,min,avg,max in results]
     
-    title = f"The temperature information for the date range {start} and {end} is as follows"
-    # Converting Data to Json
-    return jsonify(title,temp_dict)
+    for date in temp_dict:
+        if start != date:
+            title = f"The temperature information for the date range {start} and {end} is as follows"
+            # Converting Data to Json
+            return jsonify(title,temp_dict)
+    
+
+    return jsonify({"error": "Date Range not found."}), 404
+
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
